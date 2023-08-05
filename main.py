@@ -1,5 +1,5 @@
-import subprocess
+import requests
 
-subprocess.call("pyupdater build -F --app-version 1.0 main.py")
-
-print("IM HAPPY :)")
+update = str(requests.get("https://raw.githubusercontent.com/TheGreatMaximus98/PythonGame/main/main.py").content).replace("b'", "").replace("'", "").replace("\\n\\n", "\n").removesuffix("\\n")
+with open("main.py", "w") as f:
+    f.write(update)
